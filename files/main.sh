@@ -27,22 +27,22 @@ fi
 #
 # Replace key and secret in the /.s3cfg file with the one the user provided
 #
-echo "" >> /.s3cfg
-echo "access_key = ${aws_key}" >> /.s3cfg
-echo "secret_key = ${aws_secret}" >> /.s3cfg
+echo "" >> .s3cfg
+echo "access_key = ${aws_key}" >> .s3cfg
+echo "secret_key = ${aws_secret}" >> .s3cfg
 
 if [ -z "${security_token}" ]; then
-    echo "security_token = ${aws_security_token}" >> /.s3cfg
+    echo "security_token = ${aws_security_token}" >> .s3cfg
 fi
 
 #
 # Add region base host if it exist in the env vars
 #
 if [ "${s3_host_base}" != "" ]; then
-  sed -i "s/host_base = s3.amazonaws.com/# host_base = s3.amazonaws.com/g" /.s3cfg
-  sed -i "s/host_bucket = %(bucket)s.s3.amazonaws.com/# host_bucket = %(bucket)s.s3.amazonaws.com/g" /.s3cfg
-  echo "host_base = ${s3_host_base}" >> /.s3cfg
-  echo "host_bucket = %(bucket)s.${s3_host_base}" >> /.s3cfg
+  sed -i "s/host_base = s3.amazonaws.com/# host_base = s3.amazonaws.com/g" .s3cfg
+  sed -i "s/host_bucket = %(bucket)s.s3.amazonaws.com/# host_bucket = %(bucket)s.s3.amazonaws.com/g" .s3cfg
+  echo "host_base = ${s3_host_base}" >> .s3cfg
+  echo "host_bucket = %(bucket)s.${s3_host_base}" >> .s3cfg
 fi
 
 if [ "${use_https}" != "" ]; then
@@ -57,18 +57,18 @@ if [ "${cmd}" != "interactive" ]; then
   #
   if [ "${cmd}" = "sync-s3-to-local" ]; then
       echo ${src-s3}
-      ${S3CMD_PATH} --config=/.s3cfg  sync ${SRC_S3} /tmp/dest/
+      ${S3CMD_PATH} --config=.s3cfg  sync ${SRC_S3} /tmp/dest/
   fi
 
   #
   # sync-local-to-s3 - copy from local to s3
   #
   if [ "${cmd}" = "sync-local-to-s3" ]; then
-      ${S3CMD_PATH} --config=/.s3cfg sync /tmp/src/ ${DEST_S3}
+      ${S3CMD_PATH} --config=.s3cfg sync /tmp/src/ ${DEST_S3}
   fi
 else
   # Copy file over to the default location where S3cmd is looking for the config file
-  cp /.s3cfg /root/
+  cp .s3cfg /root/
 fi
 
 #
