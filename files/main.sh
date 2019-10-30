@@ -68,9 +68,6 @@ if [ "${cmd}" != "interactive" ]; then
   if [ "${cmd}" = "sync-local-to-s3" ]; then
       ${S3CMD_PATH} --config=.s3cfg sync /tmp/src/ ${DEST_S3}
   fi
-else
-  # Copy file over to the default location where S3cmd is looking for the config file
-  #cp .s3cfg /root/
 fi
 
 #
