@@ -20,5 +20,4 @@ RUN mkdir /tmp/src
 RUN mkdir /tmp/dest
 
 WORKDIR /
-CMD ["tail", "-f", "/dev/null"]
-#CMD ["/tmp/main.sh"]
+CMD ["/tmp/main.sh"]

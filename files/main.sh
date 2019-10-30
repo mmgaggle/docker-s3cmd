@@ -27,6 +27,8 @@ fi
 #
 # Replace key and secret in the /.s3cfg file with the one the user provided
 #
+cd /tmp/s3cmd
+export HOME='/tmp/s3cmd'
 echo "" >> .s3cfg
 echo "access_key = ${aws_key}" >> .s3cfg
 echo "secret_key = ${aws_secret}" >> .s3cfg
