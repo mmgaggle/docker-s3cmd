@@ -68,7 +68,10 @@ if [ "${cmd}" != "interactive" ]; then
   if [ "${cmd}" = "sync-local-to-s3" ]; then
       ${S3CMD_PATH} --config=.s3cfg sync /tmp/src/ ${DEST_S3}
   fi
+else
+  tail -f /dev/null
 fi
+
 
 #
 # Finished operations
