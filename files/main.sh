@@ -70,7 +70,7 @@ if [ "${cmd}" != "interactive" ]; then
   fi
 else
   # Copy file over to the default location where S3cmd is looking for the config file
-  cp .s3cfg /root/
+  #cp .s3cfg /root/
 fi
 
 #
