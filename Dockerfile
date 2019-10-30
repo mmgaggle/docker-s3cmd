@@ -13,7 +13,7 @@ ADD ./files/s3cfg /tmp/.s3cfg
 ADD ./files/main.sh /tmp/main.sh
 
 # Main entrypoint script
-RUN chmod 777 /tmp/main.sh
+RUN chmod 777 /tmp/main.sh .
 
 # Folders for s3cmd optionations
 RUN mkdir /tmp/src
