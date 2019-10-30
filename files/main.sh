@@ -40,7 +40,13 @@ fi
 #
 if [ "${s3_host_base}" != "" ]; then
   sed -i "s/host_base = s3.amazonaws.com/# host_base = s3.amazonaws.com/g" /.s3cfg
+  sed -i "s/host_bucket = %(bucket)s.s3.amazonaws.com/# host_bucket = %(bucket)s.s3.amazonaws.com/g" /.s3cfg
   echo "host_base = ${s3_host_base}" >> /.s3cfg
+  echo "host_bucket = %(bucket)s.${s3_host_base}" >> /.s3cfg
+fi
+
+if [ "${use_https}" != "" ]; then
+  echo "use_https = ${use_https}" >> .s3cfg
 fi
 
 # Chevk if we want to run in interactive mode or not
